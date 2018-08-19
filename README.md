@@ -22,3 +22,4 @@ $ sls deploy --stage <STAGE_NAME>
 ## TODO
 
 * Handle more scenarios other than `CustomMessage_AdminCreateUser`
+* Handle Cognito link option instead of code optins
