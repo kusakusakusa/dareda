@@ -1,13 +1,13 @@
 'use strict';
 
 // with reference to StackOverflow, https://stackoverflow.com/questions/45479961/aws-cognito-verification-email-using-parameters
-module.exports.sendEmails = function(event, context) {
+module.exports.sendEmails = function(event, context, callback) {
   if(event.userPoolId === process.env.cognitoUserPoolId) {
     
-    console.log(event) // logging
+console.log("event", event) // logging
 
     if (event.triggerSource === "CustomMessage_AdminCreateUser") { // refer to https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-working-with-aws-lambda-triggers.html#cognito-user-identity-pools-working-with-aws-lambda-trigger-sources for list of trigger Source
-      const { codeParameter, userAttributes: { name, email } } = event.request;
+      const { usernameParameter, codeParameter, userAttributes: { name, email } } = event.request;
 
         // Ensure that your message contains event.request.codeParameter. This is the placeholder for code that will be sent
         event.response.smsMessage = "Welcome to the service. Your confirmation code is " + event.request.codeParameter;
@@ -36,6 +36,10 @@ module.exports.sendEmails = function(event, context) {
                 <div style="width: 100%; text-align: left;" > 
                   <p style="font-size: 16px; color:#464646; letter-spacing: 0px; line-height: 20px">  
                     Hi ${name}, <br><br>
+
+                    <!-- Hide username if not mean for display -->
+                    <div style="display: none">${usernameParameter}</div>
+
                     Thank you for registering with {2}!<br>
                     Your account is created and this is your temporary password:
 
@@ -62,5 +66,6 @@ module.exports.sendEmails = function(event, context) {
     // Create custom message for other events
   }
   // Customize messages for other user pools
-  context.done(null, event);
+console.log("event.response", event.response) // logging
+  callback(null, event)
 };
