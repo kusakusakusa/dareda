@@ -28,28 +28,28 @@ console.log("event", event) // logging
               <div style="padding:40px">
                 <!-- APP ICON -->
                 <div align="center"> <img src="appicon.png" height="60px"></div>
-                  <br>
-                  <br>
+                  <br/>
+                  <br/>
                 <div style="width: 100%; text-align: center;" > 
                   <p style="line-height:30px; font-size:30px;font-weight: 800; color:#ec2227; letter-spacing: -1px;">Almost there!</p>
                 </div>
                 <div style="width: 100%; text-align: left;" > 
                   <p style="font-size: 16px; color:#464646; letter-spacing: 0px; line-height: 20px">  
-                    Hi ${name}, <br><br>
+                    Hi ${name}, <br/><br/>
 
                     <!-- Hide username if not mean for display -->
                     <div style="display: none">${usernameParameter}</div>
 
-                    Thank you for registering with {2}!<br>
+                    Thank you for registering with {2}!<br/>
                     Your account is created and this is your temporary password:
 
-                    <br><br>
+                    <br/><br/>
 
                   <div style="padding: 20px 0px; text-align: center; margin-left: 10%; border-radius: 10px; color: #ffffff; background:#ec2227; width: 80%">${codeParameter}</div>
-                  <br>
-                  <br>
+                  <br/>
+                  <br/>
 
-                  <p style="font-size: 16px; color:#464646; letter-spacing: 0px;"> Thank you, <br>
+                  <p style="font-size: 16px; color:#464646; letter-spacing: 0px;"> Thank you, <br/>
                   {2}
                   </p>
                 </div>
@@ -58,7 +58,7 @@ console.log("event", event) // logging
               <div style=" width: 100%; height: 100px;"> </div>
             </div>
               <!-- Copyright -->
-            <div><p style="font-size: 12px; color:#b7b7b7;">This is a system-generated message, please do not reply to this email. <br> {3} All Rights Reserved</p></div>
+            <div><p style="font-size: 12px; color:#b7b7b7;">This is a system-generated message, please do not reply to this email. <br/> {3} All Rights Reserved</p></div>
               
           </body>
           </html>`;
