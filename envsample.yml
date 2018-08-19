@@ -1,4 +1,7 @@
 service: dareda
 awsProfile: something # from ~/.aws/credentials; refer to `http://docs.aws.amazon.com/cli/latest/userguide/cli-multiple-profiles.html`
 awsTagName: something # AWS tag to group resources together
-cognitoUserPoolId: something
+
+# cognito user pool ids for different stages
+stagingCognitoUserPoolId: something
+prodCognitoUserPoolId: something
