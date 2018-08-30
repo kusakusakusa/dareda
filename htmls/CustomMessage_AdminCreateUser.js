@@ -33,9 +33,6 @@ module.exports.CustomMessage_AdminCreateUser = (usernameParameter, codeParameter
                 Hi ${name},
               </p>
 
-              <!-- Hide username if not mean for display -->
-              <div style="display: none">${usernameParameter}</div>
-
               <p style="font-size: 16px color:#464646 letter-spacing: 0px line-height: 20px">  
                 Your account is created and this is your temporary password:
               </p>
@@ -56,6 +53,10 @@ module.exports.CustomMessage_AdminCreateUser = (usernameParameter, codeParameter
           <!-- Footer -->
           <!-- <div style=" width: 100%; height: 100px">
           </div> -->
+
+          <!-- Hide username if not mean for display -->
+          <div style="display: none">${usernameParameter}</div>
+
         </div>
 
         <!-- Copyright -->
