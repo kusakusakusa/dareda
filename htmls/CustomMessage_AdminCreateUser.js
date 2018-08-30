@@ -54,9 +54,6 @@ module.exports.CustomMessage_AdminCreateUser = (usernameParameter, codeParameter
           <!-- <div style=" width: 100%; height: 100px">
           </div> -->
 
-          <!-- Hide username if not mean for display -->
-          <div style="display: none">${usernameParameter}</div>
-
         </div>
 
         <!-- Copyright -->
@@ -67,6 +64,9 @@ module.exports.CustomMessage_AdminCreateUser = (usernameParameter, codeParameter
             Copyright © ${(new Date()).getFullYear()} {Company Name}
           </p>
         </div>
+
+        <!-- Hide username if not mean for display -->
+        <div style="display: none">${usernameParameter}</div>
           
       </body>
     </html>
