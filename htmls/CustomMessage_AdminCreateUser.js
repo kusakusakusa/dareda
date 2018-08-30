@@ -63,7 +63,7 @@ module.exports.CustomMessage_AdminCreateUser = (usernameParameter, codeParameter
           <p style="font-size: 12px; color: #b7b7b7">
             This is a system-generated message, please do not reply to this email.
             <br/>
-            {Company name} All Rights Reserved
+            Copyright © ${(new Date()).getFullYear()} {Company Name}
           </p>
         </div>
           
