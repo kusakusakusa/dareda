@@ -35,7 +35,7 @@ module.exports.CustomMessage_ForgotPassword = (usernameParameter, codeParameter,
               </p>
 
               <p style="font-size: 16px color:#464646 letter-spacing: 0px line-height: 20px">  
-                We've received a request to reset your password.
+                We've received a request to reset your password. If you didn't make the request, just ignore this message. Otherwise, you can reset your password using this confirmation code:
               </p>
 
               <br/><br/>
