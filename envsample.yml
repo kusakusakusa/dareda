@@ -5,3 +5,6 @@ awsTagName: something # AWS tag to group resources together
 # cognito user pool ids for different stages
 stagingCognitoUserPoolId: something
 prodCognitoUserPoolId: something
+
+stagingRegion: something
+productionRegion: something

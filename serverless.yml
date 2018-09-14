@@ -3,6 +3,7 @@ custom:
   awsProfile: ${file(env.yml):awsProfile}
   awsTagName: ${file(env.yml):awsTagName}
   cognitoUserPoolId: ${file(env.yml):${opt:stage, 'dev'}CognitoUserPoolId}
+  region: ${file(env.yml):${opt:stage, 'dev'}Region}
 
 service: ${self:custom.service}
 
@@ -15,7 +16,7 @@ frameworkVersion: ">=1.23.0 <2.0.0"
 provider:
   name: aws
   runtime: nodejs6.10
-  region: ap-southeast-1
+  region: ${self:custom.region}
   memorySize: 128
   profile: ${self:custom.awsProfile} # aws named profile
   stage: ${opt:stage, 'dev'} # `sls deploy --stage production` if --stage is provided, else use dev
@@ -24,7 +25,16 @@ provider:
     Stage: ${opt:stage, 'dev'}
   environment:
     cognitoUserPoolId: ${self:custom.cognitoUserPoolId}
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - cognito-idp:ListUsers
+      # resource arn follow this format `arn:partition:service:region:account-id:resourcetype/resource`
+      # refer to https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#genref-arns for more information
+      Resource: "arn:aws:cognito-idp:${self:custom.region}:*:userpool/${self:provider.environment.cognitoUserPoolId}"
 
 functions:
   sendEmails:
     handler: handler.sendEmails
+  validateUniqueEmails:
+    handler: handler.validateUniqueEmails
