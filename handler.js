@@ -50,7 +50,9 @@ module.exports.validateUniqueEmails = function(event, context) {
       console.log(JSON.stringify(results))
       // if the usernames are the same, dont raise and error here so that
       // cognito will raise the duplicate username error
-      if (results.Users.length > 0 && results.Users[0].Username !== event.userName) {
+      if (results.Users.length > 0 &&
+        results.Users[0].Username !== event.userName &&
+        results.Users[0].UserStatus !== 'UNCONFIRMED') {
         console.log('Duplicate email address in signup. ' + email)
         context.done(Error('A user with the same email address exists'))
       }
