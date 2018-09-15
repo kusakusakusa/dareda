@@ -35,7 +35,7 @@ console.log("event.response", event.response) // logging
 }
 
 // https://github.com/aws-amplify/amplify-js/issues/369#issuecomment-369933670
-module.exports.validateUniqueEmails = function(event, context) {
+module.exports.validateUniqueEmailsOnSignup = function(event, context) {
   console.log(JSON.stringify(event))
 
   // check if email is already in use

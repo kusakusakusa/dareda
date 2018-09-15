@@ -36,5 +36,5 @@ provider:
 functions:
   sendEmails:
     handler: handler.sendEmails
-  validateUniqueEmails:
-    handler: handler.validateUniqueEmails
+  validateUniqueEmailsOnSignup:
+    handler: handler.validateUniqueEmailsOnSignup
