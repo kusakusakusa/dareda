@@ -4,6 +4,8 @@ const cognitoIdp = new AWS.CognitoIdentityServiceProvider({apiVersion: '2016-04-
 const CustomMessage_AdminCreateUser = require('./htmls/CustomMessage_AdminCreateUser').CustomMessage_AdminCreateUser
 const CustomMessage_ForgotPassword = require('./htmls/CustomMessage_ForgotPassword').CustomMessage_ForgotPassword
 
+const find = require('lodash/find')
+
 'use strict'
 
 // with reference to StackOverflow, https://stackoverflow.com/questions/45479961/aws-cognito-verification-email-using-parameters
@@ -48,14 +50,17 @@ module.exports.validateUniqueEmails = function(event, context) {
     cognitoIdp.listUsers(params).promise()
     .then (results => {
       console.log(JSON.stringify(results))
-      // if the usernames are the same, dont raise and error here so that
-      // cognito will raise the duplicate username error
-      if (results.Users.length > 0 &&
-        results.Users[0].Username !== event.userName &&
-        results.Users[0].UserStatus !== 'UNCONFIRMED') {
-        console.log('Duplicate email address in signup. ' + email)
-        context.done(Error('A user with the same email address exists'))
+      if (results.Users.length > 0) {
+        const confirmedUser = find(results.Users, (user) => {
+          // check against users who dont have the status 'UNCONFIRMED' so that users can continue sign up with duplicate emails, or else they will be stuck on login screen because they have not confirmed their account
+          return user.UserStatus !== 'UNCONFIRMED' && user.Username !== event.userName // if there is a duplicate of username too, let cognito trigger the duplicate username instead of triggering email duplicate error here
+        })
+        if (confirmedUser) {
+          console.log('Duplicate email address in signup. ' + email)
+          context.done(Error('A user with the same email address exists'))
+        }
       }
+
       context.done(null, event)
     })
     .catch (error => {
