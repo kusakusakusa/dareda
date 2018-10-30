@@ -2,8 +2,8 @@ custom:
   service: ${file(env.yml):service}
   awsProfile: ${file(env.yml):awsProfile}
   awsTagName: ${file(env.yml):awsTagName}
-  cognitoUserPoolId: ${file(env.yml):${opt:stage, 'dev'}CognitoUserPoolId}
-  region: ${file(env.yml):${opt:stage, 'dev'}Region}
+  cognitoUserPoolId: ${file(env.yml):${opt:stage, 'dev'}.cognitoUserPoolId}
+  region: ${file(env.yml):${opt:stage, 'dev'}.region}
 
 service: ${self:custom.service}
 
